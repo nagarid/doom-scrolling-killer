@@ -7,4 +7,5 @@
     <string name="status_missing_access">Usage access not granted.</string>
     <string name="status_ready">Ready to monitor.</string>
     <string name="status_monitoring">Monitoring in background.</string>
+    <string name="stop_scrolling_message">Stop scrolling</string>
 </resources>
