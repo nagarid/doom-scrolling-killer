@@ -3,6 +3,7 @@ package com.example.doomscrollingkiller
 import android.app.AppOpsManager
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Button
@@ -24,7 +25,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.start_button).setOnClickListener {
-            if (hasUsageAccess(this)) {
+            if (!Settings.canDrawOverlays(this)) {
+                val intent = Intent(
+                    Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:$packageName")
+                )
+                startActivity(intent)
+            } else if (hasUsageAccess(this)) {
                 ContextCompat.startForegroundService(
                     this,
                     Intent(this, UsageMonitorService::class.java)
