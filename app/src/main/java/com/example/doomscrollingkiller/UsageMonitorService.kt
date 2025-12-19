@@ -83,7 +83,7 @@ class UsageMonitorService : Service() {
         while (usageEvents.hasNextEvent()) {
             usageEvents.getNextEvent(event)
             if (event.eventType == UsageEvents.Event.MOVE_TO_FOREGROUND) {
-                lastMoveToForeground = UsageEvents.Event(event)
+                lastMoveToForeground = UsageEvents.Event()
             }
         }
         return lastMoveToForeground?.packageName
